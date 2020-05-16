@@ -1,0 +1,8 @@
+#!/bin/bash
+
+VERSION=$(grep "^ENV GORELEASER_VERSION=" Dockerfile|awk -F= '{print $2}')
+
+docker tag $IMAGE_NAME $DOCKER_REPO:$VERSION
+docker push $DOCKER_REPO:$VERSION
+docker tag $IMAGE_NAME $DOCKER_REPO:${VERSION%.*}
+docker push $DOCKER_REPO:${VERSION%.*}
