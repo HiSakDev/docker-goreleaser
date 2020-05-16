@@ -1,0 +1,2 @@
+# docker-goreleaser
+debianコンテナでgoreleaserを実行するDockerfileを登録します
