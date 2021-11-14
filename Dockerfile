@@ -1,6 +1,6 @@
-FROM golang:1.15
+FROM golang:1.16
 
-ENV GORELEASER_VERSION=v0.155.2
+ENV GORELEASER_VERSION=v0.175.0
 
 RUN apt-get update \
     && apt-get install -y bzr docker.io mercurial rpm \
