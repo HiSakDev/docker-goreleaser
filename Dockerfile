@@ -1,12 +1,13 @@
-FROM golang:1.16
+FROM golang:1.18
 
-ENV GORELEASER_VERSION=v0.175.0
+ENV GORELEASER_VERSION=1.16.2
 
 RUN apt-get update \
     && apt-get install -y bzr docker.io mercurial rpm \
-    && wget -P /tmp https://github.com/goreleaser/goreleaser/releases/download/${GORELEASER_VERSION}/goreleaser_amd64.deb \
-    && apt-get install -y /tmp/goreleaser_amd64.deb \
-    && rm -f /tmp/goreleaser_amd64.deb \
+    && wget -P /tmp https://github.com/goreleaser/goreleaser/releases/download/v${GORELEASER_VERSION}/goreleaser_${GORELEASER_VERSION}_amd64.deb \
+    && dpkg -i /tmp/goreleaser_${GORELEASER_VERSION}_amd64.deb \
+    && apt-get install -y -f \
+    && rm -f /tmp/goreleaser_${GORELEASER_VERSION}_amd64.deb \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
