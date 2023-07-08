@@ -9,7 +9,8 @@ RUN apt-get update \
     && apt-get install -y -f \
     && rm -f /tmp/goreleaser_${GORELEASER_VERSION}_amd64.deb \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && git config --global --add safe.directory \*
 
 
 ENTRYPOINT ["/entrypoint.sh"]
