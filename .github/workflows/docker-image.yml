@@ -30,3 +30,23 @@ jobs:
           ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
           ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION_SUB }}
           ${{ env.IMAGE_NAME }}:latest
+    - name: Build and push bullseye
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile-bullseye
+        push: true
+        tags: |
+          ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}-bullseye
+          ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION_SUB }}-bullseye
+          ${{ env.IMAGE_NAME }}:bullseye
+    - name: Build and push buster
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile-buster
+        push: true
+        tags: |
+          ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}-buster
+          ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION_SUB }}-buster
+          ${{ env.IMAGE_NAME }}:buster
